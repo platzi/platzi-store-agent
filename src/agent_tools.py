@@ -23,6 +23,8 @@ def buscar_productos(search_term: str) -> str:
     """
     with open("data/products.json") as f:
         products = json.load(f)
+        # Simular un error en la extracción de productos
+        # raise Exception("Error en la extracción de productos")
     
     matching_products = [p for p in products if search_term.lower() in p["name"].lower()]
     
