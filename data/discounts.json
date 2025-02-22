@@ -1,0 +1,22 @@
+[
+    { "id": 5, "discount": 0.2 },
+    { "id": 12, "discount": 0.1 },
+    { "id": 28, "discount": 0.3 },
+    { "id": 3, "discount": 0.1 },
+    { "id": 19, "discount": 0.2 },
+    { "id": 31, "discount": 0.3 },
+    { "id": 7, "discount": 0.1 },
+    { "id": 15, "discount": 0.2 },
+    { "id": 21, "discount": 0.3 },
+    { "id": 9, "discount": 0.1 },
+    { "id": 37, "discount": 0.2 },
+    { "id": 18, "discount": 0.3 },
+    { "id": 24, "discount": 0.1 },
+    { "id": 11, "discount": 0.2 },
+    { "id": 33, "discount": 0.3 },
+    { "id": 6, "discount": 0.1 },
+    { "id": 29, "discount": 0.2 },
+    { "id": 14, "discount": 0.3 },
+    { "id": 2, "discount": 0.1 },
+    { "id": 35, "discount": 0.2 }
+]

@@ -1,0 +1,282 @@
+[
+    {
+        "id": 1,
+        "name": "iPhone 14",
+        "price": 799,
+        "stock_quantity": 100,
+        "description": "El último iPhone con funciones avanzadas y una pantalla impresionante."
+    },
+    {
+        "id": 2,
+        "name": "Samsung Galaxy S23",
+        "price": 699,
+        "stock_quantity": 75,
+        "description": "El último buque insignia de Samsung con un potente procesador y cámara profesional."
+    },
+    {
+        "id": 3,
+        "name": "AirPods Pro 2",
+        "price": 249,
+        "stock_quantity": 200,
+        "description": "Auriculares inalámbricos con cancelación activa de ruido y audio espacial."
+    },
+    {
+        "id": 4,
+        "name": "MacBook Air M2",
+        "price": 1199,
+        "stock_quantity": 50,
+        "description": "La nueva MacBook Air con chip M2 y pantalla Retina espectacular."
+    },
+    {
+        "id": 5,
+        "name": "iPad Pro M2",
+        "price": 999,
+        "stock_quantity": 30,
+        "description": "El iPad más potente con chip M2 y pantalla Liquid Retina XDR."
+    },
+    {
+        "id": 6,
+        "name": "Apple Watch Series 8",
+        "price": 399,
+        "stock_quantity": 120,
+        "description": "Reloj inteligente con funciones avanzadas de salud y seguridad."
+    },
+    {
+        "id": 7,
+        "name": "Google Pixel 7 Pro",
+        "price": 899,
+        "stock_quantity": 80,
+        "description": "El smartphone de Google con la mejor cámara y funciones de inteligencia artificial."
+    },
+    {
+        "id": 8,
+        "name": "Sony WH-1000XM5",
+        "price": 349,
+        "stock_quantity": 150,
+        "description": "Auriculares premium con cancelación de ruido líder en el mercado."
+    },
+    {
+        "id": 9,
+        "name": "Dell XPS 13 Plus",
+        "price": 1399,
+        "stock_quantity": 40,
+        "description": "Un portátil ultraligero con diseño elegante y rendimiento superior."
+    },
+    {
+        "id": 10,
+        "name": "Samsung Galaxy Z Fold 4",
+        "price": 1799,
+        "stock_quantity": 25,
+        "description": "Teléfono plegable de última generación con pantalla AMOLED."
+    },
+    {
+        "id": 11,
+        "name": "Nintendo Switch OLED",
+        "price": 349,
+        "stock_quantity": 200,
+        "description": "Consola híbrida con pantalla OLED vibrante y almacenamiento ampliado."
+    },
+    {
+        "id": 12,
+        "name": "PlayStation 5",
+        "price": 499,
+        "stock_quantity": 50,
+        "description": "La consola más potente de Sony con gráficos 4K y gran catálogo de juegos."
+    },
+    {
+        "id": 13,
+        "name": "Xbox Series X",
+        "price": 499,
+        "stock_quantity": 50,
+        "description": "La consola de Microsoft con rendimiento extremo y almacenamiento ampliable."
+    },
+    {
+        "id": 14,
+        "name": "GoPro HERO11 Black",
+        "price": 499,
+        "stock_quantity": 60,
+        "description": "Cámara de acción con estabilización avanzada y video 5.3K."
+    },
+    {
+        "id": 15,
+        "name": "Kindle Scribe",
+        "price": 339,
+        "stock_quantity": 100,
+        "description": "E-reader de Amazon con pantalla grande y soporte para escritura."
+    },
+    {
+        "id": 16,
+        "name": "Samsung Galaxy Tab S8 Ultra",
+        "price": 1099,
+        "stock_quantity": 20,
+        "description": "La tablet más grande de Samsung con pantalla AMOLED y S Pen incluido."
+    },
+    {
+        "id": 17,
+        "name": "Bose QuietComfort Earbuds II",
+        "price": 299,
+        "stock_quantity": 150,
+        "description": "Auriculares inalámbricos con cancelación de ruido personalizada."
+    },
+    {
+        "id": 18,
+        "name": "Roku Streaming Stick 4K+",
+        "price": 69,
+        "stock_quantity": 200,
+        "description": "Reproductor multimedia 4K con control remoto por voz."
+    },
+    {
+        "id": 19,
+        "name": "Canon EOS R10",
+        "price": 979,
+        "stock_quantity": 25,
+        "description": "Cámara mirrorless compacta para fotos y videos de alta calidad."
+    },
+    {
+        "id": 20,
+        "name": "Logitech MX Keys Mini",
+        "price": 99,
+        "stock_quantity": 150,
+        "description": "Teclado compacto con teclas retroiluminadas y conexión Bluetooth."
+    },
+    {
+        "id": 21,
+        "name": "Apple Mac Mini M2 Pro",
+        "price": 1299,
+        "stock_quantity": 15,
+        "description": "Mini PC con el nuevo chip M2 Pro para tareas avanzadas."
+    },
+    {
+        "id": 22,
+        "name": "Microsoft Surface Laptop 5",
+        "price": 1299,
+        "stock_quantity": 25,
+        "description": "Portátil premium con pantalla táctil PixelSense y diseño ligero."
+    },
+    {
+        "id": 23,
+        "name": "Dyson Airwrap",
+        "price": 599,
+        "stock_quantity": 50,
+        "description": "Kit de estilizado con tecnología de flujo de aire para el cabello."
+    },
+    {
+        "id": 24,
+        "name": "Samsung Galaxy Buds 2 Pro",
+        "price": 199,
+        "stock_quantity": 200,
+        "description": "Auriculares compactos con audio inmersivo y cancelación de ruido."
+    },
+    {
+        "id": 25,
+        "name": "NVIDIA GeForce RTX 4090",
+        "price": 1599,
+        "stock_quantity": 10,
+        "description": "La tarjeta gráfica más potente del mercado para gaming extremo."
+    },
+    {
+        "id": 26,
+        "name": "LG OLED evo C3",
+        "price": 1799,
+        "stock_quantity": 20,
+        "description": "Televisor OLED con colores vibrantes y tecnología HDR avanzada."
+    },
+    {
+        "id": 27,
+        "name": "Fitbit Versa 4",
+        "price": 229,
+        "stock_quantity": 150,
+        "description": "Reloj inteligente con seguimiento avanzado de salud y fitness."
+    },
+    {
+        "id": 28,
+        "name": "DJI Mavic 3 Classic",
+        "price": 1599,
+        "stock_quantity": 15,
+        "description": "Dron profesional con sensor de cámara Hasselblad y alcance extendido."
+    },
+    {
+        "id": 29,
+        "name": "HyperX Cloud III",
+        "price": 129,
+        "stock_quantity": 120,
+        "description": "Auriculares gaming con sonido envolvente y diseño cómodo."
+    },
+    {
+        "id": 30,
+        "name": "Anker 737 Power Bank",
+        "price": 149,
+        "stock_quantity": 250,
+        "description": "Batería portátil de alta capacidad con carga rápida para múltiples dispositivos."
+    },
+    {
+        "id": 31,
+        "name": "Corsair K100 RGB",
+        "price": 229,
+        "stock_quantity": 60,
+        "description": "Teclado mecánico con iluminación RGB dinámica y controles programables."
+    },
+    {
+        "id": 32,
+        "name": "Sony ZV-E10",
+        "price": 899,
+        "stock_quantity": 30,
+        "description": "Cámara ideal para creadores de contenido con calidad de video 4K."
+    },
+    {
+        "id": 33,
+        "name": "Amazon Echo Show 15",
+        "price": 249,
+        "stock_quantity": 90,
+        "description": "Pantalla inteligente grande con Alexa integrada."
+    },
+    {
+        "id": 34,
+        "name": "Seagate One Touch 4TB",
+        "price": 109,
+        "stock_quantity": 140,
+        "description": "Disco externo portátil para almacenamiento rápido y confiable."
+    },
+    {
+        "id": 35,
+        "name": "Razer Blade 18",
+        "price": 2999,
+        "stock_quantity": 10,
+        "description": "Portátil gaming con pantalla grande y especificaciones premium."
+    },
+    {
+        "id": 36,
+        "name": "Philips Hue Gradient Lightstrip",
+        "price": 179,
+        "stock_quantity": 80,
+        "description": "Tira LED inteligente con colores graduales para ambientes únicos."
+    },
+    {
+        "id": 37,
+        "name": "Samsung Portable SSD T9 2TB",
+        "price": 229,
+        "stock_quantity": 70,
+        "description": "SSD portátil ultrarrápido para transferencias de datos seguras."
+    },
+    {
+        "id": 38,
+        "name": "Asus ROG Flow X16",
+        "price": 1999,
+        "stock_quantity": 20,
+        "description": "Portátil gaming convertible con rendimiento extremo."
+    },
+    {
+        "id": 39,
+        "name": "Eufy Security SoloCam S40",
+        "price": 199,
+        "stock_quantity": 40,
+        "description": "Cámara de seguridad solar con grabación 2K y detección de movimiento."
+    },
+    {
+        "id": 40,
+        "name": "Elgato Facecam Pro",
+        "price": 299,
+        "stock_quantity": 50,
+        "description": "Webcam profesional con resolución 4K y calidad de estudio."
+    }
+]
