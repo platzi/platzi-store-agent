@@ -2,6 +2,7 @@ import os
 import openai
 from dotenv import load_dotenv
 from pipeline import run_agent
+from langsmith.wrappers import wrap_openai
 
 def main():
     """
@@ -14,7 +15,7 @@ def main():
         raise ValueError("Falta la variable de entorno OPENAI_API_KEY.")
     
     # Configurar el cliente de OpenAI
-    client = openai.Client(api_key=openai_api_key)
+    client = wrap_openai(openai.Client(api_key=openai_api_key))
     
     print("\n🏪 Bienvenido a Platzi Store! 🛍️")
     print("Escribe 'salir' en cualquier momento para terminar la conversación.\n")

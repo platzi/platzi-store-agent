@@ -1,5 +1,7 @@
 import json
+from langsmith import traceable
 
+@traceable
 def calcular_precio(product_id: int, cantidad: int) -> str:
     """
     Calcula el precio total de un producto según su ID y cantidad.
@@ -14,6 +16,7 @@ def calcular_precio(product_id: int, cantidad: int) -> str:
     total_price = product["price"] * cantidad
     return f"El precio total de {cantidad} x {product['name']} es ${total_price:.2f}."
 
+@traceable
 def buscar_productos(search_term: str) -> str:
     """
     Busca productos cuyo nombre coincida con el término.
@@ -29,6 +32,7 @@ def buscar_productos(search_term: str) -> str:
     result_list = "\n".join([f"{p['id']}: {p['name']} (${p['price']})" for p in matching_products])
     return f"Productos encontrados:\n{result_list}"
 
+@traceable
 def sumar_precios(precios: list[float]) -> str:
     """
     Suma una lista de precios y regresa el total.
@@ -37,6 +41,7 @@ def sumar_precios(precios: list[float]) -> str:
         return "No hay precios para sumar."
     return f"La suma total de los precios es: ${sum(precios):.2f}"
 
+@traceable
 def verificar_descuento(product_id: int) -> str:
     """
     Verifica si un producto tiene descuento y muestra su precio con descuento.
