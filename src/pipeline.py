@@ -5,9 +5,12 @@ from agent_tools import (
     sumar_precios,
     verificar_descuento
 )
+from langsmith.run_trees import RunTree
+from uuid import uuid4
 
 # Variables globales para el estado de la conversación
 messages = []
+conversation_trace = None
 
 # Definir las herramientas disponibles para el agente
 tools = [
@@ -118,23 +121,50 @@ def run_agent(client, user_input):
     """
     Función principal que gestiona la conversación con el agente.
     """
-    global messages
+    global messages, conversation_trace
     
     # Si es la primera vez, inicializa los mensajes del sistema
     if not messages:
         messages = initialize_messages()
+
+        conversation_trace = RunTree(
+            name="Platzi Store Conversation",
+            run_type="chain",
+            inputs={"initial_messages": messages},
+            id=str(uuid4())
+        )
+        conversation_trace.post()
     
     # Agrega el mensaje del usuario
     messages.append({"role": "user", "content": user_input})
 
+    interaction_run = conversation_trace.create_child(
+        name=f"User Interaction: {user_input[:40]}",
+        run_type="chain",
+        run_id=str(uuid4())
+    )
+    interaction_run.post()
+
     try:
         # Iteraremos hasta que el agente produzca una respuesta final en texto
         while True:
+
+            llm_run = interaction_run.create_child(
+                name="Agent Call",
+                run_type="llm",
+                run_id=str(uuid4())
+            )
+            llm_run.post()
+
             response = client.chat.completions.create(
                 model="gpt-4o-mini",
                 messages=messages,
-                tools=tools
+                tools=tools,
+                langsmith_extra={"run_tree": llm_run}
             )
+
+            llm_run.end(outputs={"response": response.model_dump()})
+            llm_run.patch()
 
             assistant_message = response.choices[0].message
 
@@ -146,6 +176,13 @@ def run_agent(client, user_input):
             # Verifica si el agente está solicitando ejecutar alguna función
             if not assistant_message.tool_calls:
                 break
+
+            tool_call_run = interaction_run.create_child(
+                name="Function Calls Processing",
+                run_type="chain",
+                run_id=str(uuid4())
+            )
+            tool_call_run.post()
 
             # Agrega el mensaje del agente con llamadas a funciones a la conversación
             messages.append({
@@ -160,26 +197,66 @@ def run_agent(client, user_input):
                     function_name = tool_call.function.name
                     function_args = json.loads(tool_call.function.arguments)
 
-                    # Elige y ejecuta la función
+                    # Elige y ejecuta la función, registrando su actividad en el árbol
                     if function_name == "calcular_precio":
+                        func_run = tool_call_run.create_child(
+                            name="Calculate Price Function",
+                            run_type="tool",
+                            run_id=str(uuid4())
+                        )
+                        func_run.post()
                         result = calcular_precio(
                             product_id=function_args["product_id"],
-                            cantidad=function_args["cantidad"]
+                            cantidad=function_args["cantidad"],
+                            langsmith_extra={"run_tree": func_run}
                         )
+                        print_function_info(function_name, function_args, result)
+                        func_run.end(outputs={"result":result})
+                        func_run.patch()
                     elif function_name == "buscar_productos":
+                        func_run = tool_call_run.create_child(
+                            name="Search Products Function",
+                            run_type="tool",
+                            run_id=str(uuid4())
+                        )
+                        func_run.post()
                         result = buscar_productos(
-                            search_term=function_args["search_term"]
+                            search_term=function_args["search_term"],
+                            langsmith_extra={"run_tree": func_run}
                         )
-                    elif function_name == "sumar_precios":
-                        result = sumar_precios(
-                            precios=function_args["precios"]
-                        )
-                    elif function_name == "verificar_descuento":
-                        result = verificar_descuento(
-                            product_id=function_args["product_id"]
-                        )
+                        print_function_info(function_name, function_args, result)
+                        func_run.end(outputs={"result": result})
+                        func_run.patch()
 
-                    print_function_info(function_name, function_args, result)
+                    elif function_name == "sumar_precios":
+                        func_run = tool_call_run.create_child(
+                            name="Sum Prices Function",
+                            run_type="tool",
+                            run_id=str(uuid4())
+                        )
+                        func_run.post()
+                        result = sumar_precios(
+                            precios=function_args["precios"],
+                            langsmith_extra={"run_tree": func_run}
+                        )
+                        print_function_info(function_name, function_args, result)
+                        func_run.end(outputs={"result": result})
+                        func_run.patch()
+
+                    elif function_name == "verificar_descuento":
+                        func_run = tool_call_run.create_child(
+                            name="Check Discount Function",
+                            run_type="tool",
+                            run_id=str(uuid4())
+                        )
+                        func_run.post()
+                        result = verificar_descuento(
+                            product_id=function_args["product_id"],
+                            langsmith_extra={"run_tree": func_run}
+                        )
+                        print_function_info(function_name, function_args, result)
+                        func_run.end(outputs={"result": result})
+                        func_run.patch()
 
                     # Registra la salida de la función en la conversación
                     messages.append({
@@ -187,8 +264,39 @@ def run_agent(client, user_input):
                         "tool_call_id": tool_call.id,
                         "content": result
                     })
+            
+            tool_call_run.end(outputs={"messages": messages})
+            tool_call_run.patch()
+            # El bucle continúa => el agente ve mensajes actualizados (salidas de funciones) y
+            # puede decidir llamar a más funciones o finalizar.
+        
+        interaction_run.end(
+            outputs={
+                "final_messages": messages,
+                "status": "completed"
+            }
+        )
+        interaction_run.patch()
+
+        # Actualiza el árbol de ejecución principal para la siguiente consulta
+        conversation_trace.end(
+            outputs={
+                "current_messages": messages,
+                "status": "in_progress"
+            }
+        )
+        conversation_trace.patch()
 
     except Exception as e:
+        # En caso de error, registra la excepción en el árbol de ejecución
+        interaction_run.end(
+            error=str(e),
+            outputs={
+                "final_messages": messages,
+                "status": "in_progress"
+            }
+        )
+        interaction_run.patch()
         raise e
 
     print()
